@@ -1,7 +1,7 @@
-List imagesSlider = ['images/image1.jpg',
-  'images/image2.jpg',
-  'images/image3.jpeg',
-  'images/image4.jpg'];
+//List imagesSlider = ['images/image1.jpg',
+//  'images/image2.jpg',
+//  'images/image3.jpeg',
+//  'images/image4.jpg'];
 
 //class CarouselSlider {
 //  final String imgAsset;
@@ -10,7 +10,21 @@ List imagesSlider = ['images/image1.jpg',
 
 //import 'package:carousel_slider/carousel_slider.dart';
 //import 'package:tyson/src/fakedata/image_carousel_class.dart';
-//
+
+import 'image_carousel_class.dart';
+import 'package:flutter/material.dart';
+List<CarouselClass> imagesSlider = [
+  new CarouselClass('images/image1.jpg', 'Sell and declutter',
+      'Make money, while freeing up space'),
+  new CarouselClass(
+      'images/image2.jpg', 'Discover', 'Find affordable and hidden treasures'),
+  new CarouselClass('images/image3.jpeg', 'Chat instantly',
+      'Buy and sell simply by chatting'),
+  new CarouselClass('images/image4.jpg', 'Join the community',
+      'Share and connect with people like you'),
+];
+
+
 //List imagesSlider = [
 //  new CarouselClass(
 //      imgAsset: 'images/image1.jpg',

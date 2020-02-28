@@ -3,5 +3,6 @@ class CarouselClass {
   final String title;
   final String description;
 
-  const CarouselClass({this.imgAsset, this.title, this.description});
+  CarouselClass(this.imgAsset, this.title, this.description);
+
 }

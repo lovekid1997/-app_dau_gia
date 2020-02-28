@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:tyson/src/fakedata/image_carousel_slider.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 
+import 'login.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -31,15 +32,20 @@ class _LoginPageState extends State<LoginPage> {
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 5.0),
               decoration: BoxDecoration(color: Colors.green),
-              child: Image.asset(
-                img,
+              child: new Image.asset(
+                img.imgAsset,
                 fit: BoxFit.cover,
               ),
+//                    new Text(
+//                      img.title,
+//                      style: new TextStyle(
+//                          fontWeight: FontWeight.bold, fontSize: 5),
+//                    )
             );
           },
         );
       }).toList(),
-      height: 400,
+      height: 400.0,
       aspectRatio: 16 / 9,
       viewportFraction: 0.8,
       initialPage: 0,
@@ -50,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
       autoPlayAnimationDuration: Duration(milliseconds: 800),
       autoPlayCurve: Curves.fastOutSlowIn,
       pauseAutoPlayOnTouch: Duration(seconds: 3),
-      enlargeCenterPage: true,
+      enlargeCenterPage: false,
       onPageChanged: (index) {
         setState(() {
           _current = index;
@@ -58,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
       },
       scrollDirection: Axis.horizontal,
     );
+
     //Position CarouselSlider
     Widget _positionCarousel = new Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -90,7 +97,8 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 new Text(
                   "SKIP",
-                  style: new TextStyle(fontSize: 13, color: Color(0xff888888)),
+                  style:
+                      new TextStyle(fontSize: 13, color: Color(0xff888888)),
                 ),
                 new RaisedButton(
                   onPressed: _onLoginClicked,
@@ -129,29 +137,61 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             new SizedBox(
-              height: 5.0,
+              height: 10.0,
             ),
             new SizedBox(
-                width: double.infinity,
-                height: 50.0,
-                child: new RaisedButton.icon(
-                    onPressed: _onCotinueWithFaceBook,
-                    color: Colors.blue[900],
-                    icon: new Icon(CommunityMaterialIcons.contacts),
-                    label: new Text(
-                      "Continue with Facebook",
-                      style: new TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
-                    ))),
+              width: double.infinity,
+              height: 50.0,
+              child: new RaisedButton.icon(
+                onPressed: _onCotinueWithFaceBook,
+                color: Colors.blue[900],
+                icon: new Icon(
+                  CommunityMaterialIcons.facebook_box,
+                  color: Colors.white,
+                ),
+                label: new Text(
+                  "Continue with Facebook",
+                  style: new TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            new SizedBox(
+              height: 10.0,
+            ),
+            new RichText(
+              text: new TextSpan(
+                style: new TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.black,
+                ),
+                children: <TextSpan>[
+                  TextSpan(text: 'By signing up, you agree to our '),
+                  TextSpan(
+                    text: 'Terms of Service ',
+                    style: new TextStyle(color: Colors.green[800]),
+                  ),
+                  TextSpan(text: 'and '),
+                  TextSpan(
+                    text: 'Privacy Policy.',
+                    style: new TextStyle(color: Colors.green[800]),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  void _onLoginClicked() {}
+  void _onLoginClicked() {
+    setState(() {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+    });
+  }
 
   void _onSignUpClicked() {}
 
