@@ -26,6 +26,9 @@ dependencies:
   carousel_slider: ^1.4.1
   flutter_auth_buttons: ^0.6.0
   community_material_icon: ^3.5.95
+  image_picker: ^0.6.3+4
+  image_cropper: ^1.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

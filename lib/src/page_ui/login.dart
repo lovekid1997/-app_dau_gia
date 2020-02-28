@@ -22,6 +22,7 @@ class _LoginState extends State<Login> {
             icon: new Icon(
               CommunityMaterialIcons.arrow_left,
               color: Colors.black,
+              size: 35.0,
             ),
             onPressed: () {
               Navigator.pop(context);

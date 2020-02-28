@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:tyson/src/fakedata/image_carousel_slider.dart';
 import 'package:community_material_icon/community_material_icon.dart';
+import 'package:tyson/src/page_ui/sign_up.dart';
 
 import 'login.dart';
 
@@ -29,7 +30,10 @@ class _LoginPageState extends State<LoginPage> {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
               margin: EdgeInsets.symmetric(horizontal: 5.0),
               decoration: BoxDecoration(color: Colors.green),
               child: new Image.asset(
@@ -98,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                 new Text(
                   "SKIP",
                   style:
-                      new TextStyle(fontSize: 13, color: Color(0xff888888)),
+                  new TextStyle(fontSize: 13, color: Color(0xff888888)),
                 ),
                 new RaisedButton(
                   onPressed: _onLoginClicked,
@@ -127,12 +131,15 @@ class _LoginPageState extends State<LoginPage> {
               child: new RaisedButton(
                 color: Colors.green[800],
                 onPressed: _onSignUpClicked,
-                child: new Text(
-                  "Sign up for an account",
-                  style: new TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.0),
+                child: new GestureDetector(
+                  onTap:_onSignUpClicked,
+                  child: new Text(
+                    "Sign up for an account",
+                    style: new TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0),
+                  ),
                 ),
               ),
             ),
@@ -193,7 +200,14 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  void _onSignUpClicked() {}
+  void _onSignUpClicked() {
+    setState(() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SignUp()));
+    });
+  }
+
+
 
   void _onCotinueWithFaceBook() {}
 }
