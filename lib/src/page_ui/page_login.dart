@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:tyson/src/fakedata/image_carousel_slider.dart';
 import 'package:community_material_icon/community_material_icon.dart';
+import 'package:tyson/src/page_ui/product.dart';
 import 'package:tyson/src/page_ui/sign_up.dart';
 
 import 'login.dart';
@@ -30,10 +31,7 @@ class _LoginPageState extends State<LoginPage> {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
+              width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 5.0),
               decoration: BoxDecoration(color: Colors.green),
               child: new Image.asset(
@@ -99,10 +97,16 @@ class _LoginPageState extends State<LoginPage> {
             new Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                new Text(
-                  "SKIP",
-                  style:
-                  new TextStyle(fontSize: 13, color: Color(0xff888888)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Product()));
+                  },
+                  child: new Text(
+                    "SKIP",
+                    style:
+                        new TextStyle(fontSize: 13, color: Color(0xff888888)),
+                  ),
                 ),
                 new RaisedButton(
                   onPressed: _onLoginClicked,
@@ -132,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.green[800],
                 onPressed: _onSignUpClicked,
                 child: new GestureDetector(
-                  onTap:_onSignUpClicked,
+                  onTap: _onSignUpClicked,
                   child: new Text(
                     "Sign up for an account",
                     style: new TextStyle(
@@ -206,8 +210,6 @@ class _LoginPageState extends State<LoginPage> {
           context, MaterialPageRoute(builder: (context) => SignUp()));
     });
   }
-
-
 
   void _onCotinueWithFaceBook() {}
 }

@@ -11,15 +11,20 @@ class LoginBloc {
   Stream get passStream => _controllerPassword.stream;
 
   bool isValidInfo(String user, String pass) {
+
     if (!ValidationsLogin.isValidUser(user)) {
       _controllerUser.sink.addError('User not avaliable !!!');
+      if(!ValidationsLogin.isValidPassword(pass)){
+        _controllerPassword.sink.addError('Password not avaliable !!!');
+      }
       return false;
     }
+    _controllerUser.sink.add('ok');
     if(!ValidationsLogin.isValidPassword(pass)){
       _controllerPassword.sink.addError('Password not avaliable !!!');
       return false;
     }
-      _controllerUser.sink.add('ok');
+    _controllerPassword.sink.add('ok');
     return true;
   }
 
