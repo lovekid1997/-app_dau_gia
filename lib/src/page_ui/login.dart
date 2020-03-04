@@ -1,5 +1,6 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:tyson/src/bloc/login_bloc.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class _LoginState extends State<Login> {
   TextEditingController _controllerUser = new TextEditingController();
   TextEditingController _controllerPassword = new TextEditingController();
   bool _showPassWord = true;
+  LoginBloc _loginBloc = new LoginBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -36,29 +38,45 @@ class _LoginState extends State<Login> {
         padding: EdgeInsets.only(left: 15.0, right: 15.0),
         child: new Column(
           children: <Widget>[
-            new TextField(
-              controller: _controllerUser,
-              autocorrect: false,
-              style: new TextStyle(fontSize: 18.0, color: Colors.black),
-              decoration: InputDecoration(
-                labelText: 'Username or Email address',
-                labelStyle: TextStyle(color: Color(0xff888888), fontSize: 15),
-              ),
-            ),
+            StreamBuilder<Object>(
+                stream: _loginBloc.userStream,
+                builder: (context, snapshot) {
+                  return new TextField(
+                    controller: _controllerUser,
+                    autocorrect: false,
+                    style: new TextStyle(fontSize: 18.0, color: Colors.black),
+                    decoration: InputDecoration(
+                      errorText: snapshot.hasError
+                          ? snapshot.error
+                          : null,
+                      labelText: 'Username or Email address',
+                      labelStyle:
+                          TextStyle(color: Color(0xff888888), fontSize: 15),
+                    ),
+                  );
+                }),
             new Stack(
               alignment: AlignmentDirectional.centerEnd,
               children: <Widget>[
-                new TextField(
-                  controller: _controllerPassword,
-                  obscureText: _showPassWord,
-                  autocorrect: false,
-                  style: new TextStyle(fontSize: 18.0, color: Colors.black),
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    labelStyle:
-                        TextStyle(color: Color(0xff888888), fontSize: 15),
-                  ),
-                ),
+                StreamBuilder<Object>(
+                    stream: _loginBloc.passStream,
+                    builder: (context, snapshot) {
+                      return new TextField(
+                        controller: _controllerPassword,
+                        obscureText: _showPassWord,
+                        autocorrect: false,
+                        style:
+                            new TextStyle(fontSize: 18.0, color: Colors.black),
+                        decoration: InputDecoration(
+                          errorText: snapshot.hasError
+                              ? snapshot.error
+                              : null,
+                          labelText: 'Password',
+                          labelStyle:
+                              TextStyle(color: Color(0xff888888), fontSize: 15),
+                        ),
+                      );
+                    }),
                 new GestureDetector(
                   onTap: _onToggleShowPassword,
                   child: new Text(
@@ -108,7 +126,13 @@ class _LoginState extends State<Login> {
 
   void _onToggleForgotPassword() {}
 
-  void _onClickLogIn() {}
+  void _onClickLogIn() {
+    setState(() {
+      if(_loginBloc.isValidInfo(_controllerUser.text, _controllerPassword.text)){
+        print('z');
+      }
+    });
+  }
 
   void _onToggleShowPassword() {
     setState(() {
