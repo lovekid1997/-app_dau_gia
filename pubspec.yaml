@@ -28,7 +28,7 @@ dependencies:
   community_material_icon: ^3.5.95
   image_picker: ^0.6.3+4
   image_cropper: ^1.2.1
-
+  curved_navigation_bar: ^0.3.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,7 +50,7 @@ flutter:
       - images/image2.jpg
       - images/image3.jpeg
       - images/image4.jpg
-
+      - images/iconHammer.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
